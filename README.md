@@ -13,7 +13,10 @@ npm run server
 ---
 **NOTE**
 
-You can create a .env file at the root of the project and add the port environment variable PORT=5000 to specify a port otherwise it will default to 3000.
+Create a .env file at the root of the project and add the following environment variables.
+
+PORT=3000
+APP_NAME="Tasty Treats"
 
 ---
 

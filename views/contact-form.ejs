@@ -20,14 +20,14 @@
 				        <div class="form-group row">
 				            <label for="email" class="col-sm-2 col-form-label">Email</label>
 				            <div class="col-sm-10">
-				              <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" required />
+				              <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" data-parsley-trigger="change" required />
 				            </div>
 				        </div>
 
 				        <div class="form-group row">
 				            <label for="message" class="col-sm-2 col-form-label">Message</label>
 				            <div class="col-sm-10">
-				              <textarea class="form-control" rows="4" id="message" name="message" placeholder="Your message" required></textarea>
+				              <textarea class="form-control" rows="4" id="message" name="message" placeholder="Your message" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="300" required></textarea>
 				            </div>
 				        </div>
 
@@ -50,11 +50,12 @@
 								    <canvas id="canvas"></canvas>
 								    <input id="code" name="code" class="form-control" autocomplete="nope">
 								    <a id="refresh" href="#">Refresh</a>
+								    <div class="text-danger invalid-message js-captcha" style="display:none;">Invalid captcha.</div>
 								</div>			            		
 			            	</div>
 			            	<div class="col-sm-3">
 			            		<br><br>
-			            		<button type="submit" id="valid" class="btn btn-success">Submit</button>
+			            		<button type="submit" id="submit" class="btn btn-success">Submit</button>
 			            	</div>
 			            </div>
 
@@ -68,37 +69,37 @@
 
 <script>
 	var captchaLength = 4;
+
 	const captcha = new Captcha($('#canvas'), {
 		length: captchaLength
 	});
+
 	$('#refresh').on('click', function(e) {
 		e.preventDefault();
 		captcha.refresh();
 	});
-	$.validator.addMethod("checkCaptcha", function(value, element) {
-    	return captcha.valid($('#code').val());
-	}, "Captcha is invalid.");
-	$.validator.addMethod("customEmailValidation", function(value, element) {
-    	var pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    	return pattern.test($('#email').val());
-	}, "Please enter a valid email address.");
-	$("#inquiry_form").validate({
-		rules: {
-	  		name: {
-	      		required: true
-	    	},
-	    	email: {
-	    		required: true,
-	    		customEmailValidation: true
-	    	},
-	    	message: {
-	    		required: true,
-	    		minlength: 10,
-	    		maxlength: 1000
-	    	},
-	    	code: {
-	    		checkCaptcha: true
-	    	}	    	
-		}
+
+	$('#code').on('focus', function(e) {
+		$('.js-captcha').hide();
+	});
+
+	$(function () {
+		$('#inquiry_form').parsley({
+        	trigger:      'change',
+        	successClass: "has-success",
+        	errorClass: "has-error",
+        	classHandler: function (el) {
+            	return el.$element.closest('.form-group');
+        	},
+        	errorsWrapper: '<div class="text-danger invalid-message"></div>',
+        	errorTemplate: '<span></span>',
+    	}).on('field:validated', function() {
+			// 
+		}).on('form:submit', function() {
+	    	if (captcha.valid($('#code').val()) === false) {
+	    		$('.js-captcha').show();
+				return false;
+	    	}
+		});
 	});
 </script>

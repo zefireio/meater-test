@@ -17,6 +17,8 @@ You can create a .env file at the root of the project and add the port environme
 
 ---
 
+## Implementation
+
 The code follows the MVC pattern where controllers, models and views are decoupled. The controllers hold the business logic. The models handles the JSON flat file management. The views handle the UI/UX side of the app.
 
 

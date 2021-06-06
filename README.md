@@ -7,8 +7,9 @@ This is Meater's Tasty Treats technical test.
 ```sh
 git clone https://github.com/zefireio/meater-test.git meater-test
 cd meater-test
-touch .env
+mkdir db
 touch db/db.json
+touch .env
 npm install
 npm run server
 ```

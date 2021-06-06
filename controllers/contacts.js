@@ -41,7 +41,7 @@ var store = (req, res, next) => {
   // Check if honeypot fake input has been populated in which case we consider the submission invalid
   if (req.body.hasOwnProperty('phone') === true && req.body.phone != '') {
     res.status(400).json({
-      body: 'Bots are not allowed, please move on.'
+      body: 'We do not like spammers, moving on.'
     });
   } else {
     // Validate inputs
@@ -61,7 +61,6 @@ var store = (req, res, next) => {
       var newsletter = req.body.newsletter;
       var created_at = Date.now();
       var insert = ContactsModel.insert(name, email, message, newsletter, created_at);
-
       // If insert was successfull, then should have the last inserted id
       // and we render the success page.
       // Otherwise we render the form error page.

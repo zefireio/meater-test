@@ -76,12 +76,12 @@
 		captcha.refresh();
 	});
 	$.validator.addMethod("checkCaptcha", function(value, element) {
-    	captchaIsValid = captcha.valid($('#code').val());
-    	if (captchaIsValid === false) {
-			captcha.refresh();			
-		}
-    	return captchaIsValid;
-	}, "Captcha is invalid");
+    	return captcha.valid($('#code').val());
+	}, "Captcha is invalid.");
+	$.validator.addMethod("customEmailValidation", function(value, element) {
+    	var pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    	return pattern.test($('#email').val());
+	}, "Please enter a valid email address.");
 	$("#inquiry_form").validate({
 		rules: {
 	  		name: {
@@ -89,11 +89,12 @@
 	    	},
 	    	email: {
 	    		required: true,
-	    		email: true
+	    		customEmailValidation: true
 	    	},
 	    	message: {
 	    		required: true,
-	    		minlength: 10
+	    		minlength: 10,
+	    		maxlength: 1000
 	    	},
 	    	code: {
 	    		checkCaptcha: true

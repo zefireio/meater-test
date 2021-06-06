@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('partials/header'); %>
+	<body>
+		<%- include('partials/nav'); %>
+		<div class="container">
+			<div class="row">				
+				<div class="col-md-12 boxed">
+					<h5 class="title">Tasty Treats Contact List</h5>
+					<div class="responsive">
+				    	<table class="table table-striped">
+					    	<thead>
+					    		<th>Id</td>
+					    		<th>Name</td>
+					    		<th>Email Address</td>
+					    		<th>Message</td>
+					    		<th>Newsletter Subscription</th>
+					    	</thead>
+					    	<tbody>
+					    		<% contacts.forEach(function(contact) { %>
+					    			<tr>
+					    				<td><%= contact.id %></td>
+					    				<td><%= contact.name %></td>
+					    				<td><%= contact.email %></td>
+					    				<td><%= contact.message %></td>
+					    				<td><%= contact.newsletter ? 'Yes' : 'No' %></td>
+					    			</tr>
+					    		<% }); %>
+					    	</tbody>
+					    </table>
+				    </div>
+				</div>				
+			</div>
+		</div>
+	</body>
+</html>

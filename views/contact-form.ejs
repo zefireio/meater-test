@@ -75,6 +75,13 @@
 		e.preventDefault();
 		captcha.refresh();
 	});
+	$.validator.addMethod("checkCaptcha", function(value, element) {
+    	captchaIsValid = captcha.valid($('#code').val());
+    	if (captchaIsValid === false) {
+			captcha.refresh();			
+		}
+    	return captchaIsValid;
+	}, "Captcha is invalid");
 	$("#inquiry_form").validate({
 		rules: {
 	  		name: {
@@ -89,20 +96,8 @@
 	    		minlength: 10
 	    	},
 	    	code: {
-	    		required: true,
-	    		minlength: captchaLength
-	    	}
-		},
-	  	beforeSubmit: function(form) {
-		    captchaIsValid = captcha.valid($('#code').val());
-    		if (captchaIsValid === false) {
-    			alert('Invalid Captcha!')
-    			captcha.refresh();
-    			$('#code').val('');
-    		} else {
-    			$(form).submit();
-    		}
-    		return captchaIsValid;    	
+	    		checkCaptcha: true
+	    	}	    	
 		}
 	});
 </script>

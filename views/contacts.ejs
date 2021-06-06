@@ -11,6 +11,7 @@
 				    	<table class="table table-striped">
 					    	<thead>
 					    		<th>Id</td>
+					    		<th>Created at</td>
 					    		<th>Name</td>
 					    		<th>Email Address</td>
 					    		<th>Message</td>
@@ -20,6 +21,7 @@
 					    		<% contacts.forEach(function(contact) { %>
 					    			<tr>
 					    				<td><%= contact.id %></td>
+					    				<td><%= new Date(contact.created_at).toString().slice(0, 24) %></td>
 					    				<td><%= contact.name %></td>
 					    				<td><%= contact.email %></td>
 					    				<td><%= contact.message %></td>

@@ -59,7 +59,9 @@ var store = (req, res, next) => {
       var email = req.body.email;
       var message = req.body.message;
       var newsletter = req.body.newsletter;
-      var insert = ContactsModel.insert(name, email, message, newsletter);
+      var created_at = Date.now();
+      var insert = ContactsModel.insert(name, email, message, newsletter, created_at);
+
       // If insert was successfull, then should have the last inserted id
       // and we render the success page.
       // Otherwise we render the form error page.

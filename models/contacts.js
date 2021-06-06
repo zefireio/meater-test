@@ -17,13 +17,13 @@ function find(id) {
 }
 
 // Insert a new contact
-function insert(name, email, message, newsletter) {
+function insert(name, email, message, newsletter, created_at) {
 	var data = db.JSON();
-	console.log(data);
 	var length = getLength(data);
 	var insertId = (length == 0) ? 1 : length + 1;
 	var create = {
 		id: insertId,
+		created_at: created_at,
 		name: name,
 		email: email,
 		message: message,

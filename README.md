@@ -13,14 +13,10 @@ npm run server
 ---
 **NOTE**
 
-<<<<<<< HEAD
-You can create a .env file at the root of the project and add the port environment variable PORT=5000 to specify a port otherwise it will default to 3000.
-=======
 Create a .env file at the root of the project and add the following environment variables.
 
 - PORT=3000
 - APP_NAME="Tasty Treats"
->>>>>>> 71b64c9edaa8034174667eb0060f3f62d8455341
 
 ---
 
@@ -40,8 +36,4 @@ Backend input validation could be extended in order to handle multiple rules per
 
 JSON Data management could be extended in order to handle data updates and deletes allowing Terence to manage his records. 
 
-<<<<<<< HEAD
 Finally, the use of a database engine would allow Terence to query data providing more and better information as well as extending the system's capabilities.
-=======
-Finally, the use of a database engine would allow Terence to query data providing more and better information as well as extending the system's capabilities.
->>>>>>> 71b64c9edaa8034174667eb0060f3f62d8455341

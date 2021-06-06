@@ -40,7 +40,7 @@ var create = (req, res, next) => {
 var store = (req, res, next) => {
   // Check if honeypot fake input has been populated in which case we consider the submission invalid
   if (req.body.hasOwnProperty('phone') === true && req.body.phone != '') {
-    res.status(400).json({
+    res.status(403).json({
       body: 'We do not like spammers, moving on.'
     });
   } else {

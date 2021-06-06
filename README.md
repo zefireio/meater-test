@@ -7,13 +7,15 @@ This is Meater's Tasty Treats technical test.
 ```sh
 git clone https://github.com/zefireio/meater-test.git meater-test
 cd meater-test
+touch .env
+touch db/db.json
 npm install
 npm run server
 ```
 ---
 **NOTE**
 
-Create a .env file at the root of the project and add the following environment variables.
+The .env file at the root of the project should be edited to add the following environment variables.
 
 - PORT=3000
 - APP_NAME="Tasty Treats"
@@ -25,6 +27,8 @@ Create a .env file at the root of the project and add the following environment 
 The code follows the MVC pattern where controllers, models and views are decoupled. The controllers hold the business logic. The models handle the JSON flat file management. The views handle the UI/UX side of the app.
 
 I have chosen to use JSON to manage the tasty treats contacts collected through the form as it adds structure which makes it easier to manage in the code. There were no specific contraints in the specifications regarding the text file, so I could not see any reasons to not use the JSON format and it remains a text file.
+
+To prevent spam bots from polluting Terence's contact list, I am using a captcha mechanism and the honey pot technique. A second validation is performed at controller level to check email addresses. Terence should be fine.
 
 ## Improvements/Suggestions
 

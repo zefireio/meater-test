@@ -31,7 +31,6 @@ A CSRF token based mechanism could be added in order to prevent Cross Site Reque
 
 Backend input validation could be extended in order to handle multiple rules per field.
 
-JSON Data management could be extended in order to handle data updates and deletes to allow Terence to manage his records. 
+JSON Data management could be extended in order to handle data updates and deletes allowing Terence to manage his records. 
 
 Finally, the use of a database engine would allow Terence to query data providing more and better information as well as extending the system's capabilities.
-
